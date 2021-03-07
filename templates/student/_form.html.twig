@@ -1,0 +1,47 @@
+{{ form_start(form) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+    <div class="row">
+        <div class="col">
+           {{ form_label(form.name, 'Nombre') }} {{ form_widget(form.name) }}
+        </div>
+         <div class="col">
+           {{ form_label(form.surname, 'Apellido') }} {{ form_widget(form.surname) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+           {{ form_label(form.documentType, 'Tipo de documento') }} {{ form_widget(form.documentType) }}
+        </div>
+         <div class="col">
+           {{ form_label(form.documentNumber, 'Número de documento') }} {{ form_widget(form.documentNumber) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+           {{ form_label(form.birthDate, 'Fecha de nacimiento') }} {{ form_widget(form.birthDate) }}
+        </div>
+         <div class="col">
+           {{ form_label(form.mail, 'Correo electrónico') }} {{ form_widget(form.mail) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+           {{ form_label(form.career, 'Carrera') }} {{ form_widget(form.career) }}
+        </div>
+         <div class="col">
+           {{ form_label(form.yearCareer, 'Año de ingreso') }} {{ form_widget(form.yearCareer) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+           {{ form_label(form.experience, 'Experiencia laboral') }} {{ form_widget(form.experience) }}
+        </div>
+    </div>
+    <div clas="row">
+    	<div class="col">
+    		<button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+    	</div>
+    </div>
+{{ form_end(form) }}

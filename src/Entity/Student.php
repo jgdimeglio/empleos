@@ -122,12 +122,12 @@ class Student
 
     public function getBirthDate(): ?\DateTimeInterface
     {
-        return $this->birthdate;
+        return $this->birthDate;
     }
 
-    public function setBirthDate(\DateTimeInterface $birthdate): self
+    public function setBirthDate(\DateTimeInterface $birthDate): self
     {
-        $this->birthdate = $birthdate;
+        $this->birthDate = $birthDate;
 
         return $this;
     }
