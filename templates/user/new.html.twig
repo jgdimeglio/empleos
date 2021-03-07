@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block body %}
+	<div class="container" style="max-width: 500px">
+	    <h1>Registrate como {{ (role == 'STUDENT') ? 'estudiante' : 'empresa' }}</h1>
+
+	    {{ include('user/_form.html.twig') }}
+	</div>
+
+{% endblock %}

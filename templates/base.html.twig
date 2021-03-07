@@ -28,11 +28,11 @@
             Registrar
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Estudiante</a></li>
-            <li><a class="dropdown-item" href="#">Empresa</a></li>
+            <li><a class="dropdown-item" href="{{ path('user_new', {role: 'STUDENT'}) }}">Estudiante</a></li>
+            <li><a class="dropdown-item" href="{{ path('user_new', {role: 'COMPANY'}) }}">Empresa</a></li>
           </ul>
         </div>
-        <a class="btn btn-outline-secondary" href="#">Ingresar</a>
+        <a class="btn btn-outline-secondary" href="{{path('login')}}">Ingresar</a>
     </header>
         <main class="container">
             {% for label, messages in app.flashes(['warning', 'error', 'success']) %}
