@@ -37,6 +37,29 @@ class Job
      */
     private $endDate;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $published;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="jobs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $company;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Province::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $province;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Location::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $location;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +109,54 @@ class Job
     public function setEndDate(\DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getPublished(): ?\DateTimeInterface
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?\DateTimeInterface $published): self
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getProvince(): ?Province
+    {
+        return $this->province;
+    }
+
+    public function setProvince(?Province $province): self
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }

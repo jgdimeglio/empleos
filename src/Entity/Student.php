@@ -52,6 +52,21 @@ class Student
      */
     private $experience;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $career;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $yearCareer;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $published;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +152,42 @@ class Student
     public function setExperience(string $experience): self
     {
         $this->experience = $experience;
+
+        return $this;
+    }
+
+    public function getCareer(): ?string
+    {
+        return $this->career;
+    }
+
+    public function setCareer(string $career): self
+    {
+        $this->career = $career;
+
+        return $this;
+    }
+
+    public function getYearCareer(): ?int
+    {
+        return $this->yearCareer;
+    }
+
+    public function setYearCareer(int $yearCareer): self
+    {
+        $this->yearCareer = $yearCareer;
+
+        return $this;
+    }
+
+    public function getPublished(): ?\DateTimeInterface
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?\DateTimeInterface $published): self
+    {
+        $this->published = $published;
 
         return $this;
     }
