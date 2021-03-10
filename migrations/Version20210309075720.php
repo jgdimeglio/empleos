@@ -12,6 +12,7 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20210309075720 extends AbstractMigration
 {
+
     public function getDescription() : string
     {
         return '';
@@ -49,5 +50,46 @@ final class Version20210309075720 extends AbstractMigration
         $this->addSql('DROP TABLE province');
         $this->addSql('DROP TABLE student');
         $this->addSql('DROP TABLE user');
+    }
+
+    public function postUp(Schema $schema) : void{
+        /* Provinces */
+        $this->connection->exec('INSERT INTO province (name) VALUES ("Buenos Aires")');
+        $this->connection->exec('INSERT INTO province (name) VALUES ("Córdoba")');
+        $this->connection->exec('INSERT INTO province (name) VALUES ("Mendoza")');
+
+        /* Locations */
+        $this->connection->exec('INSERT INTO location (name, province_id) VALUES ("Quilmes", 1)');
+        $this->connection->exec('INSERT INTO location (name, province_id) VALUES ("Banfield", 1)');
+        $this->connection->exec('INSERT INTO location (name, province_id) VALUES ("Temperley", 1)');
+
+        $this->connection->exec('INSERT INTO location (name, province_id) VALUES ("Alta Garcia", 2)');
+        $this->connection->exec('INSERT INTO location (name, province_id) VALUES ("Cosquín", 2)');
+
+        $this->connection->exec('INSERT INTO location (name, province_id) VALUES ("Godoy Cruz", 3)');
+
+        /* Users */
+        $this->connection->exec('INSERT INTO user (email, roles, password) VALUES ("admin@gmail.com", \'["ROLE_ADMIN"]\',"$argon2id$v=19$m=65536,t=4,p=1$T2JqbTZlVTVGcklkSnBQNA$VHx98UF19dNeeDCI6vRa6r8zPMR19CuZV+BJSbBzVO8")');
+
+        $this->connection->exec('INSERT INTO user (email, roles, password) VALUES ("empresa@gmail.com", \'["ROLE_COMPANY"]\',"$argon2id$v=19$m=65536,t=4,p=1$T2JqbTZlVTVGcklkSnBQNA$VHx98UF19dNeeDCI6vRa6r8zPMR19CuZV+BJSbBzVO8")');
+
+        $this->connection->exec('INSERT INTO user (email, roles, password) VALUES ("estudiante@gmail.com", \'["ROLE_STUDENT"]\',"$argon2id$v=19$m=65536,t=4,p=1$T2JqbTZlVTVGcklkSnBQNA$VHx98UF19dNeeDCI6vRa6r8zPMR19CuZV+BJSbBzVO8")');
+
+        $this->connection->exec('INSERT INTO user (email, roles, password) VALUES ("estudiante1@gmail.com", \'["ROLE_STUDENT"]\',"$argon2id$v=19$m=65536,t=4,p=1$T2JqbTZlVTVGcklkSnBQNA$VHx98UF19dNeeDCI6vRa6r8zPMR19CuZV+BJSbBzVO8")');
+
+        /* Student */
+        $this->connection->exec('INSERT INTO student (user_id, name, surname, document_type, document_number, birth_date, mail, experience, career, year_career, published) VALUES (3, "Juan", "Gomez", "DNI", "36285996", "2000-05-03", "estudiante@gmail.com", "Soy un programador con un gran ambición de interiorizarme profundamente en todas las áreas del desarrollo web y desempeñarme como desarrollador full-stack.", "Ingeniería en Informática", 2019, "2021-03-10 15:09:12")');
+
+        $this->connection->exec('INSERT INTO student (user_id, name, surname, document_type, document_number, birth_date, mail, experience, career, year_career, published) VALUES (4, "Diego", "Roldan", "DNI", "34252698", "1992-07-09", "estudiante1@gmail.com", "Actualmente estoy estudiando para obtener el título de Analista Programador Universitario y busco un empleo en la industria del software que me permita obtener experiencia profesional y demostrar mis capacidades.", "Analista de Sistemas", 2017, "2021-03-10 15:12:51")');
+
+        /* Company */
+        $this->connection->exec('INSERT INTO company (location_id, province_id, user_id, name, cuit, address, phone, mail) VALUES (1, 1, 2, "Soft SA", "20326958545", "Juan B Justo", "11 256698523", "empresa@gmail.com")');
+
+         /* Job */
+        $this->connection->exec('INSERT INTO job (company_id, title, description, start_date, end_date, published) VALUES (1, "Programador Java", "Sumate como java software engineer a una importante empresa de software argentina orientada al sector de videojuegos, con sede en buenos aires, mendoza, berlín y montevideo, creadora de varias apps de entretenimiento que superan los 700 millones de disfrutas de las apps free- to- play, este rol es para vos!¿qué necesitás para ser parte del equipo?experiencia de +5 años en back end en java, kotlin, go o python (excluyente en alguna de esas tecnologías).conocer o desarrollar en java 8 (excluyente).experiencia implementando buenas prácticas (tdd, solid, clean code, pair programming).estudios terciarios o universitarios en sistemas o carreras dentro de empresas producto (deseable).flexibilidad para aprender otras valoran perfiles con experiencia en aws y parte de un equipo de desarrollo que cuenta con integrantes.", "2021-03-11", "2021-03-25", "2021-03-10 15:23:12")');
+
+        $this->connection->exec('INSERT INTO job (company_id, title, description, start_date, end_date, published) VALUES (1, "Desarrolladores Sin Experiencia", "Dirigido a estudiantes de la fiuna fundados conocimientos y experiencia en python y javascript orientado al backend (nodejs). amplios conocimientos en manejo de bases de datos: mysql, postgresql. (plus contar con conocimientos de base de datos no relacionales.) experiencia en desarrollo en ambientes linux (físico,virtual, basado en contenedores).", "2021-03-15", "2021-04-20", "2021-03-10 15:24:18")');
+
+        $this->connection->exec('INSERT INTO job (company_id, title, description, start_date, end_date, published) VALUES (1, "Backend Laravel Developer", "Buscamos a unx PHP Software Developer a nuestro equipo de desarrollo. Buscamos a alguien que le apasionen las buenas practicas tecnológicas y la calidad de código. Vas a poder trabajar distintos tipos de proyectos, donde vas a poder aportar, aprender y desarrollar tu plan de carrera en un buen clima de trabajo.", "2021-03-15", "2021-06-05", null)');
     }
 }

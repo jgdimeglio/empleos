@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\JobRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=JobRepository::class)
@@ -18,21 +19,29 @@ class Job
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="text")
      */
     private $description;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="date")
      */
     private $startDate;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="date")
      */
     private $endDate;

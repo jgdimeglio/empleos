@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StudentRepository::class)
@@ -18,46 +19,64 @@ class Student
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="string", length=255)
      */
     private $surname;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="string", columnDefinition="ENUM('DNI', 'LC', 'LE', 'Pasaporte', 'CI')")
      */
     private $documentType;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="string", length=36)
      */
     private $documentNumber;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="date")
      */
     private $birthDate;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="string", length=90)
      */
     private $mail;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="text")
      */
     private $experience;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="string", length=255)
      */
     private $career;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="integer")
      */
     private $yearCareer;

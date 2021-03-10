@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class CompanyType extends AbstractType
 {
@@ -61,7 +62,7 @@ class CompanyType extends AbstractType
             ->add('cuit')
             ->add('address')
             ->add('phone')
-            ->add('mail')
+            ->add('mail', EmailType::class)
             ->add('province_in_form', ChoiceType::class, [
                 'mapped' => false,
                 'choices' => $provincesChoices,
