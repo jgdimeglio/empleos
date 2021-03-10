@@ -26,7 +26,7 @@ Antes de comenzar es importante tener instalado una base de datos MySQL y Compos
 
 ## Datos de pruebas
 
-Para probar el sistema se han creado tres tipos de usuarios con roles diferentes. Un usuario Admin, uno Company o otro Student. El usuario Admin está habilitado para publicar los avisos de trabajo y a los estudiantes. El usuario Student solamente puede cargar su perfil, mientras que el usuario Company puede cargar su perfil y sus ofertas de trabajo. Cada usuario solamente tiene permisos para ingresar a sus respectivas páginas.
+Para probar el sistema se han creado tres tipos de usuarios con roles diferentes. Un usuario Admin, uno Company y otro Student. El usuario Admin está habilitado para aprobar los avisos de trabajo y a los estudiantes. El usuario Student solamente puede cargar su perfil, mientras que el usuario Company puede cargar su perfil y sus ofertas de trabajo. Cada usuario solamente tiene permisos para ingresar a sus respectivas páginas.
 
 - Usuario admin: admin@gmail.com contraseña: 123456
 - Usuario estudiante: estudiante@gmail.com contraseña: 123456
