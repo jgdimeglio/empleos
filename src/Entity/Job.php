@@ -43,22 +43,10 @@ class Job
     private $published;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="jobs")
+     * @ORM\ManyToOne(targetEntity=Company::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $company;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Province::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $province;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Location::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $location;
 
     public function getId(): ?int
     {
@@ -133,30 +121,6 @@ class Job
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
-
-        return $this;
-    }
-
-    public function getProvince(): ?Province
-    {
-        return $this->province;
-    }
-
-    public function setProvince(?Province $province): self
-    {
-        $this->province = $province;
-
-        return $this;
-    }
-
-    public function getLocation(): ?Location
-    {
-        return $this->location;
-    }
-
-    public function setLocation(?Location $location): self
-    {
-        $this->location = $location;
 
         return $this;
     }

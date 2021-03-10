@@ -77,4 +77,22 @@ class StudentController extends AbstractController
             'student' => $student,
         ]);
     }
+
+    /**
+     * @Route("/{id}/publish", name="student_publish", methods={"GET","POST"})
+     */
+    public function publish(StudentRepository $studentbRepository, $id): Response
+    {
+        $student = $studentbRepository->find($id);
+
+        $student->setpublished(new \DateTime());
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($student);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'El estudiante fue publicado correctamente.');
+
+        return $this->redirectToRoute('student_index');
+    }
 }

@@ -47,4 +47,13 @@ class JobRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findPublished()
+    {
+        return $this->createQueryBuilder('j')
+            ->andWhere('j.published IS NOT NULL')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

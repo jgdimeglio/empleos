@@ -49,6 +49,24 @@ class Company
      */
     private $jobs;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Location::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $location;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Province::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $province;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="company", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
@@ -145,6 +163,42 @@ class Company
                 $job->setCompany(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getProvince(): ?Province
+    {
+        return $this->province;
+    }
+
+    public function setProvince(?Province $province): self
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }

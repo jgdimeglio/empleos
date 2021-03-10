@@ -12,23 +12,23 @@
                 <td>{{ student.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <td>{{ student.name }}</td>
             </tr>
             <tr>
-                <th>Surname</th>
+                <th>Apellido</th>
                 <td>{{ student.surname }}</td>
             </tr>
             <tr>
-                <th>DocumentType</th>
+                <th>Tipo de documento</th>
                 <td>{{ student.documentType }}</td>
             </tr>
             <tr>
-                <th>DocumentNumber</th>
+                <th>Número de documento</th>
                 <td>{{ student.documentNumber }}</td>
             </tr>
             <tr>
-                <th>BirthDate</th>
+                <th>Fecha de nacimiento</th>
                 <td>{{ student.birthDate ? student.birthDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
@@ -36,27 +36,24 @@
                 <td>{{ student.mail }}</td>
             </tr>
             <tr>
-                <th>Experience</th>
+                <th>Experiencia</th>
                 <td>{{ student.experience }}</td>
             </tr>
             <tr>
-                <th>Career</th>
+                <th>Carrera</th>
                 <td>{{ student.career }}</td>
             </tr>
             <tr>
-                <th>YearCareer</th>
+                <th>Año ingreso a la carrera</th>
                 <td>{{ student.yearCareer }}</td>
             </tr>
             <tr>
-                <th>Published</th>
+                <th>Fecha de publicación</th>
                 <td>{{ student.published ? student.published|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('student_index') }}">back to list</a>
+    <a href="{{ path('student_index') }}">Volver al listado</a>
 
-    <a href="{{ path('student_edit', {'id': student.id}) }}">edit</a>
-
-    {{ include('student/_delete_form.html.twig') }}
 {% endblock %}

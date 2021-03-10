@@ -1,0 +1,62 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-6">
+           	{{ form_label(form.name, 'Nombre') }} {{ form_widget(form.name) }}
+        </div>
+         <div class="col-6">
+           	{{ form_label(form.cuit, 'CUIT') }} {{ form_widget(form.cuit) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+           	{{ form_label(form.mail, 'Correo electrónico') }} {{ form_widget(form.mail) }}
+        </div>
+         <div class="col-6">
+           	{{ form_label(form.phone, 'Teléfono') }} {{ form_widget(form.phone) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+        	{{ form_label(form.province_in_form, 'Provincia') }} {{ form_widget(form.province_in_form) }}
+        </div>
+         <div class="col-6">
+           	{{ form_label(form.location_in_form, 'Localidad') }} {{ form_widget(form.location_in_form) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+        	{{ form_label(form.address, 'Dirección') }} {{ form_widget(form.address) }}
+        </div>
+    </div>
+    <div class="container mt-2">
+      <div class="row">
+        <div class="col text-center">
+          <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+        </div>
+      </div>
+    </div>
+{{ form_end(form) }}
+
+<script>
+$(function(){
+    $('#company_province_in_form').change(function(){
+        province_id = $(this).val();
+        $.ajax({
+            method: "GET",
+            url: "/locations-by-province/" + province_id,
+            data: {}
+        }).done(function(locations) {
+            optionTemplate = '<option value="{value}">{name}</option>';
+            optionsHTML = '';
+            for (var i = 0; i < locations.length; i++) {
+                companyLocation = locations[i];
+                optionsHTML += optionTemplate.replace('{value}', companyLocation.id);
+                optionsHTML = optionsHTML.replace('{name}', companyLocation.name);	
+            }
+
+            $('#company_location_in_form').html(optionsHTML);
+
+        });
+	});
+});
+</script>

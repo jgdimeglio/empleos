@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Job index{% endblock %}
+
+{% block body %}
+    <h1>Listado de empleos</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de finalización</th>
+                <th>Fecha de publicación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+            <tr>
+                <td>{{ job.title }}</td>
+                <td>{{ job.startDate ? job.startDate|date('d-m-Y') : '' }}</td>
+                <td>{{ job.endDate ? job.endDate|date('d-m-Y') : '' }}</td>
+                <td>{{ job.published ? job.published|date('d-m-Y H:i:s') : '' }}</td>
+                <td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        {% if job.published == null %}
+                            <a class="btn btn-success btn-sm" href="{{ path('job_publish', {'id': job.id}) }}"><i class="bi bi-check-circle-fill"></i> Publicar</a>
+                        {% else %}
+                            <a class="btn btn-success btn-sm disabled" href="{{ path('job_publish', {'id': job.id}) }}"><i class="bi bi-check-circle-fill"></i> Publicar</a>
+                        {% endif %}
+                    {% endif %}
+                    <a class="btn btn-secondary btn-sm" href="{{ path('job_show', {'id': job.id}) }}"><i class="bi bi-eye-fill"></i> Ver</a>
+                    {% if is_granted('ROLE_COMPANY') %}
+                        <a class="btn btn-primary btn-sm" href="{{ path('job_edit', {'id': job.id}) }}"><i class="bi bi-pencil-square"></i> Editar</a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">No se encontraron empleos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_COMPANY') %}
+        <a href="{{ path('job_new') }}">Crear nuevo</a>
+    {% endif %}
+{% endblock %}

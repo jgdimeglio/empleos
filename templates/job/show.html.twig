@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Empleo{% endblock %}
+
+{% block body %}
+    <h1>Empleo</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ job.id }}</td>
+            </tr>
+            <tr>
+                <th>Título</th>
+                <td>{{ job.title }}</td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>{{ job.description }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de inicio</th>
+                <td>{{ job.startDate ? job.startDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de finalización</th>
+                <td>{{ job.endDate ? job.endDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Publicado</th>
+                <td>{{ job.published ? job.published|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('job_index') }}">Volver al listado</a>
+    {% if is_granted('ROLE_COMPANY') %}
+        <a href="{{ path('job_edit', {'id': job.id}) }}">Editar</a>
+        {{ include('job/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

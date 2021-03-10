@@ -47,6 +47,12 @@ class AuthController extends AbstractController
         if($this->authorizationChecker->isGranted('ROLE_STUDENT')){
             return $this->redirectToRoute('student_profile');
         }
+        if($this->authorizationChecker->isGranted('ROLE_COMPANY')){
+            return $this->redirectToRoute('company_profile');
+        }
+        if($this->authorizationChecker->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('job_index');
+        }
     }
 
     /**

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de Empleos{% endblock %}
+
+{% block body %}
+    <h1>Listado de empleos</h1>
+        {% for job in jobs %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-arrow-bar-right"></i> {{ job.title }}</h5>
+                    <p class="card-text">{{ job.description }}</p>
+                    <p><small class="text-muted"><i class="bi bi-building"></i> Publicado por {{ job.company.name }} | <i class="bi bi-calendar4-week"></i> Desde el {{ job.startDate ? job.startDate|date('d-m-Y') : '' }} hasta el {{ job.endDate ? job.endDate|date('d-m-Y') : '' }}</small></p>
+                </div>
+            </div>
+        {% else %}
+                <p>No se encontraron empleos</p>
+        {% endfor %}
+
+{% endblock %}

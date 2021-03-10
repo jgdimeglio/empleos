@@ -22,6 +22,12 @@ class Location
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Province::class, inversedBy="locations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $province;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +41,18 @@ class Location
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getProvince(): ?Province
+    {
+        return $this->province;
+    }
+
+    public function setProvince(?Province $province): self
+    {
+        $this->province = $province;
 
         return $this;
     }
