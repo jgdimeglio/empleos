@@ -22,7 +22,7 @@ Antes de comenzar es importante tener instalado una base de datos MySQL y Compos
 4. En el archivo .env ubicado en el directorio raíz se debe configurar la URL de la base de datos MySQL ```DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/empleos"```
 5. Crear la base de datos con el comando ```php bin/console doctrine:database:create```
 6. Ejecutar las migraciones para crear las tablas, relaciones e insertar datos de prueba con el comando ```php bin/console doctrine:migration:migrate```
-7. Finalmente iniciar el servido ejecutando el comando ```symfony server:start``` e ingresar a http://localhost:8000/
+7. Finalmente iniciar el servidor ejecutando el comando ```symfony server:start``` e ingresar a http://localhost:8000/
 
 ## Datos de pruebas
 
