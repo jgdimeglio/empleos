@@ -1,3 +1,35 @@
 # Bolsa de Trabajo
 
 ## Tecnologías utilizadas
+
+- PHP 7.3.19
+- Symfony CLI 4.23.2
+- MySQL 15.1
+
+## Frameworks
+
+- Symfony 5.2.4
+- Bootsrap 5.0.0
+- jQuery 3.5.1
+
+## Instalación
+
+Para ejecutar 
+
+1. Instalar la última versión de Symfony https://symfony.com/download
+2. Clonar el proyecto desde GitHub: git clone https://github.com/jgdimeglio/empleos
+3. Posicionarse sobre el proyecto e instalar las dependencias: composer install
+4. En el archivo .env ubicado en el directorio raiz se debe configurar la URL de la base de datos ``` MySQL DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/empleos"```
+5. Crear la base de datos con el comando php bin/console doctrine:database:create
+6. Ejecutar las migraciones para crear las tables, relaciones e insertar datos de prueba con el comando 
+7. Finalmente iniciar el servido ejecutando el comando symfony server:start e ingresar a http://localhost:8000/
+
+## Datos de pruebas
+
+Para probar el sistema se han creado tres tipos de usuarios con roles diferentes. Un usuario Admin, uno Company o otro Student. El usuario admin está habilitado para publicar los avisos de trabajo y a los estudiantes. El usuario estudiante solamente puede cargar su perfil, mientras que el usuario empresa puede cargar su perfil y sus ofertas de trabajo.
+
+- Usuario admin: admin@gmail.com contraseña: 123456
+- Usuario estudiante: estudiante@gmail.com contraseña: 123456
+- Usuario empresa: empresa@gmail.com contraseña: 123456
+
+De igual forma se pueden dar de alta usuario estudiantes y empresas nuevos.
